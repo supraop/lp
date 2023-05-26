@@ -1,0 +1,35 @@
+-------------------------1)BFS-DFS --------------------------------------------------------------------------------------
+Enter the number of vertices: 6
+Enter the number of edges: 7
+Enter the edges in the format (source destination):
+0 1
+0 2
+1 3
+1 4
+2 4
+3 5
+4 5
+
+------------------------------------------PRIMS/KRUSKAL/DIJSTRA------------------------------------------------
+Enter the number of vertices: 5
+Enter the number of edges: 7
+Enter the source, destination, and weight of each edge:
+0 1 4
+0 2 2
+1 2 1
+1 3 5
+2 3 8
+2 4 10
+3 4 2
+Enter the source vertex for MST: 0
+
+------------------------------------------------------------SJF------------------------------------------------------------
+enter no of process: 4
+enter process 1 arrival time: 0
+enter process 1 burst time: 5
+enter process 2 arrival time: 2
+enter process 2 burst time: 3
+enter process 3 arrival time: 1
+enter process 3 burst time: 8
+enter process 4 arrival time: 3
+enter process 4 burst time: 6

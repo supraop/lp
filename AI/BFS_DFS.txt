@@ -1,0 +1,95 @@
+import java.util.*;
+
+public class GraphTraversal {
+    private int vertices;
+    private LinkedList<Integer>[] adjacencyList;
+
+    public GraphTraversal(int vertices) {
+        this.vertices = vertices;
+        adjacencyList = new LinkedList[vertices];
+        for (int i = 0; i < vertices; i++) {
+            adjacencyList[i] = new LinkedList<>();
+        }
+    }
+
+    public void addEdge(int source, int destination) {
+        adjacencyList[source].add(destination);
+    }
+
+    public void breadthFirstSearch(int startVertex) {
+        boolean[] visited = new boolean[vertices];
+        Queue<Integer> queue = new LinkedList<>();
+
+        visited[startVertex] = true;
+        queue.add(startVertex);
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            System.out.print(currentVertex + " ");
+
+            LinkedList<Integer> adjacentVertices = adjacencyList[currentVertex];
+            for (int adjacentVertex : adjacentVertices) {
+                if (!visited[adjacentVertex]) {
+                    visited[adjacentVertex] = true;
+                    queue.add(adjacentVertex);
+                }
+            }
+        }
+    }
+
+    public void depthFirstSearch(int startVertex) {
+        boolean[] visited = new boolean[vertices];
+        depthFirstSearchUtil(startVertex, visited);
+    }
+
+    private void depthFirstSearchUtil(int currentVertex, boolean[] visited) {
+        visited[currentVertex] = true;
+        System.out.print(currentVertex + " ");
+
+        LinkedList<Integer> adjacentVertices = adjacencyList[currentVertex];
+        for (int adjacentVertex : adjacentVertices) {
+            if (!visited[adjacentVertex]) {
+                depthFirstSearchUtil(adjacentVertex, visited);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+
+        GraphTraversal graph = new GraphTraversal(vertices);
+
+        System.out.print("Enter the number of edges: ");
+        int edges = scanner.nextInt();
+
+        System.out.println("Enter the edges in the format (source destination):");
+        for (int i = 0; i < edges; i++) {
+            int source = scanner.nextInt();
+            int destination = scanner.nextInt();
+            graph.addEdge(source, destination);
+        }
+
+        System.out.println("Choose traversal algorithm:");
+        System.out.println("1. Breadth First Search (BFS)");
+        System.out.println("2. Depth First Search (DFS)");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        System.out.print("Enter the starting vertex: ");
+        int startVertex = scanner.nextInt();
+
+        System.out.print("Traversal: ");
+        if (choice == 1) {
+            graph.breadthFirstSearch(startVertex);
+        } else if (choice == 2) {
+            graph.depthFirstSearch(startVertex);
+        } else {
+            System.out.println("Invalid choice!");
+        }
+
+        scanner.close();
+    }
+}

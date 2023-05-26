@@ -1,0 +1,79 @@
+import java.util.*;
+
+class Graph {
+    private int vertices;
+    private int[][] adjacencyMatrix;
+
+    public Graph(int vertices) {
+        this.vertices = vertices;
+        adjacencyMatrix = new int[vertices][vertices];
+    }
+
+    public void addEdge(int source, int destination, int weight) {
+        adjacencyMatrix[source][destination] = weight;
+        adjacencyMatrix[destination][source] = weight;
+    }
+
+    public void greedyMST() {
+        boolean[] visited = new boolean[vertices];
+        visited[0] = true;
+
+        int edgeCount = 0;
+        int totalWeight = 0;
+
+        while (edgeCount < vertices - 1) {
+            int minWeight = Integer.MAX_VALUE;
+            int minSource = -1;
+            int minDestination = -1;
+
+            for (int source = 0; source < vertices; source++) {
+                if (visited[source]) {
+                    for (int destination = 0; destination < vertices; destination++) {
+                        if (!visited[destination] && adjacencyMatrix[source][destination] != 0) {
+                            if (adjacencyMatrix[source][destination] < minWeight) {
+                                minWeight = adjacencyMatrix[source][destination];
+                                minSource = source;
+                                minDestination = destination;
+                            }
+                        }
+                    }
+                }
+            }
+
+            visited[minDestination] = true;
+            edgeCount++;
+            totalWeight += minWeight;
+            System.out.println("Edge: " + minSource + " - " + minDestination + ", Weight: " + minWeight);
+        }
+
+        System.out.println("Total weight of MST: " + totalWeight);
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of vertices: ");
+        int vertices = scanner.nextInt();
+
+        Graph graph = new Graph(vertices);
+
+        System.out.print("Enter the number of edges: ");
+        int edges = scanner.nextInt();
+
+        System.out.println("Enter the source, destination, and weight for each edge:");
+        for (int i = 0; i < edges; i++) {
+            int source = scanner.nextInt();
+            int destination = scanner.nextInt();
+            int weight = scanner.nextInt();
+            graph.addEdge(source, destination, weight);
+        }
+
+        System.out.println("Minimum Spanning Tree:");
+        graph.greedyMST();
+
+        scanner.close();
+    }
+}

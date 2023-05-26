@@ -1,0 +1,72 @@
+public class Temperature {
+
+public String mystring = ''; //Class Member variable
+    
+public static Decimal getcalculatedValue(Decimal c) {
+Decimal myValue = (c * 9/5)+32;
+System.debug('the result is '+ myValue);
+return myValue;
+}
+}
+
+
+
+
+
+
+public class Reverse {
+	public static void reverse(String input) {
+        system.debug('the reverse string is :'+ input.reverse() );
+    }
+}
+
+
+
+
+
+
+
+public class Palindrome {
+ public static void isPalindrome(String input) {
+     String rev = input.reverse();
+     if(input == rev)
+     {  
+        system.debug('String is Palindrom :'+rev ); 
+	 }
+     else 
+     { 
+		system.debug('String is not Palindrom :'+rev ); 
+	}
+    }
+}
+
+
+
+
+
+
+
+public class Calculator {
+
+    
+    public static void add(Integer operand1, Integer operand2) {
+        Integer outt = operand1 + operand2 ;
+        System.debug('The value is: ' + outt);
+    }
+
+    public static void subtract(Integer operand1, Integer operand2) {
+        Integer outt = operand1 - operand2 ;
+        System.debug('The value is: ' + outt);
+    }
+
+    public static void multiply(Integer operand1, Integer operand2) {
+       Integer outt = operand1 * operand2 ;
+        System.debug('The value is: ' + outt);
+    }
+
+    public static void divide(Integer operand1, Integer operand2) {
+        Decimal outt = (Decimal)operand1 / operand2;
+        System.debug('The value is: ' + outt);
+    }
+
+}
