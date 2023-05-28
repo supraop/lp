@@ -153,6 +153,6 @@ public class Tr {
         // Printing the ciphere text
         // Custom input - Hello Geek
         System.out.println("Cipher Text : " +
-                tc.doEncryption("Hello Mayuresh"));
+                tc.doEncryption("Hello World!!!"));
     }
 }
